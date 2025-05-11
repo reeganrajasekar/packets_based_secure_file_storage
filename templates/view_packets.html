@@ -1,0 +1,21 @@
+{% extends 'layout/Base.html' %}
+
+{% block title %}View_Packets{% endblock %}
+
+{% block content %}
+<div class="card" style="width: 100%; max-width: 700px; overflow-x: auto;">
+    <div class="text-center mt-4">
+        <a href="{{ url_for('download', file_id=file_id) }}" class="btn btn-primary">Download File</a>
+    </div>
+    <hr>
+    <h2 class="text-center mb-4">Packets</h2>
+    <img src="/img" alt="">
+    <ul class="list-group">
+        {% for segment in segments %}
+            <li class="list-group-item">
+                <strong>Packet {{ segment[0] }}</strong>: {{ segment[1] }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

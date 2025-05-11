@@ -1,0 +1,6 @@
+Flask
+Flask-Login
+Werkzeug
+numpy
+pillow
+flask_mail

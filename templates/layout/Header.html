@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm" id="mainNavbar">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="{{ url_for('my_files') }}">Secure File Storage</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                {% if session.get('user_id') %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'my_files' %}active-link{% endif %}" href="{{ url_for('my_files') }}">My Files</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'upload' %}active-link{% endif %}" href="{{ url_for('upload') }}">Upload</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'login' %}active-link{% endif %}" href="{{ url_for('login') }}">Login</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'register' %}active-link{% endif %}" href="{{ url_for('register') }}">Register</a>
+                    </li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </div>
+</nav>

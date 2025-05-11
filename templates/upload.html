@@ -1,0 +1,30 @@
+{% extends 'layout/Base.html' %}
+
+{% block title %}Upload File{% endblock %}
+
+{% block content %}
+<div class="card" style="width: 100%; max-width: 600px;">
+    <h2 class="text-center mb-4">Upload File</h2>
+    <form id="uploadForm" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput" class="form-control mb-3" required>
+        <input type="text" name="pin" class="form-control mb-3" placeholder="Enter a PIN" required>
+        <button type="submit" class="btn btn-primary w-100 mb-3">Upload</button>
+        <div class="progress mb-3" style="display: none;">
+            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%">0%</div>
+        </div>
+    </form>
+
+    <div id="packetPreview" style="display: none;">
+        <h5 class="text-center mt-4">Packet Preview:</h5>
+        <ul class="list-group" id="packetList"></ul>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}
